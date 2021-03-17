@@ -4,14 +4,14 @@
 ### Contact: offline-rl@google.com
 
 In
-[D4RL](https://sites.google.com/view/d4rl/home) and [RL Unplugged: Benchmarks for Offline Reinforcement Learning]([https://arxiv.org/abs/2006.13888]),
+[D4RL](https://sites.google.com/view/d4rl/home) and [RL Unplugged: Benchmarks for Offline Reinforcement Learning](https://arxiv.org/abs/2006.13888),
 we released a suite of benchmarks for offline reinforcement learning. They are designed to facilitate ease of use, so we provided the datasets
 with a unified API which makes it easy for the practitioner to work with all
 data in the suite once a general pipeline has been established.
 
 Here, we release policies which can be used in conjunction with the RL Unplugged
 datasets to facilitate off-policy evaluation and offline model selection
-benchmarking. Policies for the D4RL dataset can be found [here](https://sites.google.com/view/d4rl/home).
+benchmarking.
 
 In this release, we provide:
 
@@ -22,7 +22,7 @@ In this release, we provide:
 <!-- TODO(gjt): Discuss D4RL policies and add an API to show how to load the D4RL policies into TF. -->
 
 The policies are available under
-[gs://offline-rl/evaluation](gs://offline-rl/evaluation).
+[gs://offline-rl/evaluation](https://console.cloud.google.com/storage/browser/offline-rl/evaluation), with the D4RL policies provided in the subdirectory [gs://offline-rl/evaluation/d4rl](https://console.cloud.google.com/storage/browser/offline-rl/evaluation/d4rl).
 
 ## Task Descriptions
 
@@ -30,26 +30,26 @@ The policies are available under
 
 These tasks are made up of the corridor locomotion tasks involving the CMU
 Humanoid, for which prior efforts have either used motion capture data
-[Merel et al., 2019a], [Merel et al., 2019b] or training from scratch
-[Song et al., 2020]. In addition, the DM Locomotion repository contains a set of
-tasks adapted to be suited to a virtual rodent [Merel et al., 2020]. We
+([Merel et al., 2019a], [Merel et al., 2019b]) or training from scratch
+([Song et al., 2020]). In addition, the DM Locomotion repository contains a set of
+tasks adapted to be suited to a virtual rodent ([Merel et al., 2020]). We
 emphasize that the DM Locomotion tasks feature the combination of challenging
 high-DoF continuous control along with perception from rich egocentric
 observations. For details on how the dataset was generated, please refer to
-[RL Unplugged: Benchmarks for Offline Reinforcement Learning]([https://arxiv.org/abs/2006.13888]).
+[RL Unplugged: Benchmarks for Offline Reinforcement Learning](https://arxiv.org/abs/2006.13888).
 
 ### DeepMind Control Suite Dataset
 
-DeepMind Control Suite [Tassa et al., 2018] is a set of control tasks
-implemented in MuJoCo [Todorov et al., 2012]. We consider a subset of the tasks
+DeepMind Control Suite ([Tassa et al., 2018]) is a set of control tasks
+implemented in MuJoCo ([Todorov et al., 2012]). We consider a subset of the tasks
 provided in the suite that cover a wide range of difficulties.
 
 Most of the datasets in this domain are generated using D4PG. For the
 environments Manipulator insert ball and Manipulator insert peg we use V-MPO
-[Song et al., 2020] to generate the data as D4PG is unable to solve these tasks.
+([Song et al., 2020]) to generate the data as D4PG is unable to solve these tasks.
 We release datasets for 9 control suite tasks. For details on how the dataset
 was generated, please refer to
-[RL Unplugged: Benchmarks for Offline Reinforcement Learning]([https://arxiv.org/abs/2006.13888]).
+[RL Unplugged: Benchmarks for Offline Reinforcement Learning](https://arxiv.org/abs/2006.13888).
 
 ## Using the policies
 
