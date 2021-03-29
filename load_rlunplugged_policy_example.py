@@ -24,9 +24,10 @@ from dm_control_suite import ControlSuite
 import tensorflow as tf
 import tree
 
-flags.DEFINE_string('gcs_prefix', 'gs://offline-rl/evaluation',
+flags.DEFINE_string('gcs_prefix', 'gs://gresearch/deep-ope/rlunplugged',
                     'GCS prefix for policy snapshots.')
-flags.DEFINE_string('policies_json', 'policies.json', 'Path to policies json.')
+flags.DEFINE_string('policies_json', 'rlunplugged_policies.json',
+                    'Path to policies json.')
 FLAGS = flags.FLAGS
 
 
@@ -54,7 +55,6 @@ def main(_):
   batched_observation = tree.map_structure(lambda x: x[None, :], observation)
   # All policies are non-recurrent, however, some policies were saved with the
   # recurrent API, so they must be called with an initial_state.
-  # TODO(gjt): Resave policies in non-recurrent API.
   if hasattr(policy, 'initial_state'):
     action = policy(batched_observation, ((),))[0]
   else:

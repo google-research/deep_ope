@@ -21,7 +21,14 @@ source ./bin/activate
 
 pip install -r requirements.txt
 
-git clone https://github.com/deepmind/deepmind-research.git
+if [[ ! -d deepmind-research ]]; then
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/deepmind/deepmind-research.git;
+  cd deepmind-research
+  git sparse-checkout init --cone
+  git sparse-checkout set rl_unplugged
+  cd ..
+fi
 PYTHONPATH=$PYTHONPATH:`pwd`/deepmind-research/rl_unplugged
 
-python load_policy_example.py
+python load_rlunplugged_policy_example.py
+python load_d4rl_policy_example.py

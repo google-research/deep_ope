@@ -1,6 +1,6 @@
 <img src="./images/tasks.png" width="50%">
 
-# Benchmarks for Deep Off-Policy Evaluation
+# [Benchmarks for Deep Off-Policy Evaluation](https://openreview.net/forum?id=kWSeGEeHvF8)
 ### Contact: offline-rl@google.com
 
 In
@@ -10,19 +10,18 @@ with a unified API which makes it easy for the practitioner to work with all
 data in the suite once a general pipeline has been established.
 
 Here, we release policies which can be used in conjunction with the RL Unplugged
-datasets to facilitate off-policy evaluation and offline model selection
+and D4RL datasets to facilitate off-policy evaluation and offline model selection
 benchmarking.
 
 In this release, we provide:
 
--   Policies for the tasks in the DeepMind Locomotion and Control Suite datasets
+-   Policies for the tasks in the D4RL, DeepMind Locomotion and Control Suite datasets
     (described below).
 
--   Policies trained with the following algorithms (D4PG, ABM, CRR and BC) and snapshots along the training trajectory. This faciliates benchmarking offline model selection.
-<!-- TODO(gjt): Discuss D4RL policies and add an API to show how to load the D4RL policies into TF. -->
+-   Policies trained with the following algorithms (D4PG, ABM, CRR, SAC, DAPG and BC) and snapshots along the training trajectory. This faciliates benchmarking offline model selection.
 
 The policies are available under
-[gs://offline-rl/evaluation](https://console.cloud.google.com/storage/browser/offline-rl/evaluation), with the D4RL policies provided in the subdirectory [gs://offline-rl/evaluation/d4rl](https://console.cloud.google.com/storage/browser/offline-rl/evaluation/d4rl).
+[gs://gresearch/deep-ope](https://console.cloud.google.com/storage/browser/gresearch/deep-ope), with the RL Unplugged policies in the subdirectory [gs://gresearch/deep-ope/rlunplugged](https://console.cloud.google.com/storage/browser/gresearch/deep-ope/rlunplugged) and the D4RL policies in the subdirectory [gs://gresearch/deep-ope/d4rl](https://console.cloud.google.com/storage/browser/gresearch/deep-ope/d4rl).
 
 ## Task Descriptions
 
@@ -51,9 +50,20 @@ We release datasets for 9 control suite tasks. For details on how the dataset
 was generated, please refer to
 [RL Unplugged: Benchmarks for Offline Reinforcement Learning](https://arxiv.org/abs/2006.13888).
 
+### D4RL Dataset
+
+A subset of the tasks within the D4RL ([Fu et. al. 2020]) for offline reinforcement
+learning is included. These tasks include maze navigation with different robot
+morphologies, hand manipulation tasks ([Rajeswaran et. al. 2017]), and tasks from
+the OpenAI Gym bechmark ([Brockman et. al. 2016]).
+
+Each task includes a variety of datasets in order to study the interaction between
+dataset distributions and policies. For further information on what datasets
+are available, please refer to [D4RL: Datasets for Deep Data-Driven Reinforcement Learning](https://arxiv.org/abs/2004.07219).
+
 ## Using the policies
 
-The `policies.json` file provides metadata about the policies in this dataset.
+The `rlunplugged_policies.json` file provides metadata about the policies in this dataset.
 It is structured as a list of dictionaries, one for each policy, where the keys
 contain metadata including:
 
@@ -67,20 +77,34 @@ contain metadata including:
 
 -   return_mean: The mean return estimated with Monte Carlo rollouts.
 
--   return_sem: The standard error of the mean estimate.
+-   return_std: The standard error of the mean estimate.
+
+The 'd4rl_policies.json' file contains metadata in a similar format:
+
+-   policy_path: The path to the policy on Google Cloud Storage.
+
+-   task.task_names: A list of tasks that the policy is trained for. (Each task represets a different dataset)
+
+-   agent_name: The training algorithm used to learn the policy.
+
+-   return_mean: The mean return estimated with Monte Carlo rollouts.
+
+-   return_std: The standard error of the mean estimate.
 
 Requirements:
 
 *   Install dependencies: `pip install -r requirements.txt`
-*   (Optional) Setup MuJoCo license key for DM Control environments
+*   (Optional) Setup MuJoCo license key for DM Control and D4RL environments
     ([instructions](https://github.com/deepmind/dm_control#requirements-and-installation)).
 
 ### Policy loading example
 
-Policies are stored as
+RLUnplugged policies are stored as
 [TensorFlow SavedModels](https://www.tensorflow.org/guide/saved_model). Calling
-the policy on an observation returns an action sample. See `load_policy_example.py` for an example of loading a policy.
+the policy on an observation returns an action sample. See `load_rlunplugged_policy_example.py` for an example of loading a policy.
 
+D4RL policies are stored as pickle files containing weights.
+See `load_d4rl_policy_example.py` for an example of loading a policy.
 ### Compute evaluation metrics
 
 ```
@@ -141,10 +165,13 @@ engines such as <a href="https://g.co/datasetsearch">Google Dataset Search</a>.
 </div>
 
 [Agarwal et al., 2020]: https://arxiv.org/abs/1907.04543
+[Brockman et. al. 2016]: https://arxiv.org/abs/1606.01540
+[Fu et. al. 2020]: https://arxiv.org/abs/2004.07219
 [Machado et al., 2018]: https://arxiv.org/abs/1709.06009
 [Merel et al., 2019a]: https://arxiv.org/abs/1811.09656
 [Merel et al., 2019b]: https://arxiv.org/abs/1811.11711
 [Merel et al., 2020]: https://arxiv.org/abs/1911.09451
+[Rajeswaran et. al. 2017]: https://arxiv.org/abs/1709.10087
 [Song et al., 2020]: https://arxiv.org/abs/1909.12238
 [Tassa et al., 2018]: https://arxiv.org/abs/1801.00690
 [Todorov et al., 2012]: https://homes.cs.washington.edu/~todorov/papers/TodorovIROS12.pdf
