@@ -16,7 +16,7 @@
 # Download D4RL policies.
 # NOTE: If this fails, you may need to log in with `gcloud auth login'.
 pip install gsutil
-gsutil -m cp -r gs://gresearch/deep-ope/d4rl /tmp
+gcloud storage cp --recursive gs://gresearch/deep-ope/d4rl /tmp
 
 # Download policy eval code.
 git clone --depth 1 --filter=blob:none --sparse https://github.com/google-research/google-research.git;
